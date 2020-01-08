@@ -6,10 +6,14 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
+    languages = [
+        ("Python", "https://www.python.org/"),
+        ("Bash", "https://en.wikipedia.org/wiki/Bash_%28Unix_shell%29"),
+        ("ClojureScript", "https://clojurescript.org/"),
+        ("R", "https://www.r-project.org/"),
+    ]
     return render_template(
-        "index.html",
-        the_date=strftime("%B %d, %Y"),
-        languages=["Python", "Bash", "ClojureScript", "R"],
+        "index.html", the_date=strftime("%B %d, %Y"), languages=languages
     )
 
 @app.route("/greeting")

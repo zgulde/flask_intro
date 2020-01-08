@@ -10,8 +10,10 @@
     <p>Today is {{ the_date }}.</p>
     <h2>My Favorite Programming Languages</h2>
     <ol>
-        {% for language in languages %}
-            <li>{{ language }}</li>
+        {% for language, url in languages %}
+            <li>
+                <a href="{{ url }}">{{ language }}</a>
+            </li>
         {% endfor %}
     </ol>
 </body>
