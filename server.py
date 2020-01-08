@@ -16,17 +16,25 @@ def home():
         "index.html", the_date=strftime("%B %d, %Y"), languages=languages
     )
 
+
 @app.route("/greeting")
 def show_greeting_form():
     return render_template("greeting.html")
 
+
 @app.route("/greeting-result", methods=["POST"])
 def show_greeting_result():
     users_first_name = request.form["first_name"]
-    return render_template(
-        "greeting-result.html",
-        name=users_first_name
-    )
+    users_title = request.form["title"]
+
+    greeting = "Hello, "
+
+    if users_title != "":
+        greeting += users_title + " "
+
+    greeting += users_first_name + "!"
+
+    return render_template("greeting-result.html", greeting=greeting)
 
 
 @app.route("/which-side-of-the-force")
