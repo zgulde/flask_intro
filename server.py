@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 from time import strftime
+from model import predict
 
 app = Flask(__name__)
 
@@ -60,6 +61,19 @@ def rolldice(ndice):
 def htmlpage():
     rolls = [randint(1, 6) for _ in range(10)]
     return render_template("my-html-page.html", rolls=rolls)
+
+
+@app.route("/predict-spam")
+def show_spam_form():
+    return render_template("predict-spam.html")
+
+
+@app.route("/predict-spam-result", methods=["POST"])
+def show_spam_result():
+    message = request.form["message"]
+    return render_template(
+        "predict-spam-result.html", message=message, prediction=predict(message)
+    )
 
 
 @app.route("/hello/<name>")
