@@ -80,3 +80,9 @@ def show_spam_result():
 def hello(name):
     print("Will we see this?")
     return "Hello, " + name + "!"
+
+
+if __name__ == "__main__":
+    import waitress
+
+    waitress.serve(app, port=5005)
